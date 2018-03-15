@@ -11,11 +11,17 @@ flag = True
 
 while flag == True:
 	for line in ser.read():
-		phrase.append(chr(line))	#Making a list from the individual bytes from Arduino
-		joined_phrase = ''.join(str(p) for p in phrase) #Formats the phrase correctly
-		
-		if chr(line) == '\r':	#Causes the program to break if the new line character is detected
-			flag = False	
+		if chr(line) == "\r":
+			flag = False
+		else:
+			phrase.append(chr(line))	#Making a list from the individual bytes from Arduino
+			joined_phrase = ''.join(str(p) for p in phrase) #Formats the phrase correctly	
 
-print(joined_phrase)
+#print(joined_phrase)
+humidity = joined_phrase[0:17]
+temperature = joined_phrase[19:40]
+res_status = joined_phrase[43:]
+print(humidity)
+print(temperature)
+print(res_status)
 ser.close()
