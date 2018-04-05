@@ -14,22 +14,23 @@ void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
   pinMode(led, OUTPUT);
   Serial.begin(9600);
-
+  
   //dht sensor
   dht.begin();
 }
 
 void loop() {
-  delay(2000);  
-  //float switch
-  int floatVal = digitalRead(floatSwitch); 
-  if (floatVal == 1){
-    digitalWrite(led, HIGH);
-    //Serial.println("Switch is Open!");
-  }
-  else{
-    digitalWrite(led, LOW);
-    //Serial.println("Switch is Closed!");
+  char serIn;
+  delay(2000);
+  //data from pi
+  while(Serial.available()>0){
+    serIn=Serial.read();
+    if (serIn=='A') { 
+      digitalWrite(led, HIGH);
+    }
+    else if(serIn=='B'){
+      digitalWrite(led, LOW);
+    }
   }
   
   //temperature sensor code
@@ -51,22 +52,33 @@ void loop() {
   float hif = dht.computeHeatIndex(f, h);
   // Compute heat index in Celsius (isFahreheit = false)
   float hic = dht.computeHeatIndex(t, h, false);
+
+  //float switch
+  int floatVal = digitalRead(floatSwitch); 
+  if (floatVal == 1){
+    //digitalWrite(led, HIGH);
+    Serial.println(floatVal);
+  }
+  else{
+    //digitalWrite(led, LOW);
+    Serial.println(floatVal);
+  }
   
 //  Serial.print("Humidity: ");
-//  Serial.print(h);
-//  Serial.print(" %\t");
+    Serial.println(h);
+    //Serial.print(" %\n");
 //  Serial.print("Temperature: ");
 //  Serial.print(t);
 //  Serial.print(" *C ");
-//  Serial.print(f);
-//  Serial.print(" *F\t");
+    Serial.println(f);
+    //Serial.print(" *F\n");
 //  Serial.print("Heat index: ");
 //  Serial.print(hic);
 //  Serial.print(" *C ");
 //  Serial.print(hif);
 //  Serial.println(" *F");
-Serial.println(h);
-Serial.println("%\n");
+//  Serial.println(h);
+//  Serial.println("%\n");
 
 
 }

@@ -1,15 +1,40 @@
 #AMTL - Indoor Greenhouse
-#Michael Johnson
+#Michael Johnson/Ryan Wood
 #This code pulls data from the pin on the arduino that is printing the data that was gathered from the sensors
 
 import serial
-ser = serial.Serial('COM5',9600,timeout=0)
+ser = serial.Serial('COM4',9600)
 print("Connected to: " + ser.portstr)
 
-phrase = []
-flag = True
+#phrase = []
+#flag=True
 
+#ser.write("A")
+
+while True:
+	floatdata=ser.readline()
+	tempdata=ser.readline()
+	humdata=ser.readline()
+	
+	floatdata_i=int(floatdata)
+	floatdata_b=bool(floatdata_i)
+	tempdata_f=float(tempdata)
+	humdata_f=float(humdata)
+	
+	if(floatdata_b==0):
+		ser.write("A")
+	else:
+		ser.write("B")
+	
+	print(floatdata_b)
+	print(tempdata_f)
+	print(humdata_f)
+	print
+
+"""
 while flag == True:
+	linein=ser.readline()
+	#print(linein)
 	for line in ser.read():
 		phrase.append(chr(line))	#Making a list from the individual bytes from Arduino
 		joined_phrase = ''.join(str(p) for p in phrase) #Formats the phrase correctly
@@ -19,3 +44,4 @@ while flag == True:
 
 print(joined_phrase)
 ser.close()
+"""
