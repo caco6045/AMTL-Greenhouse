@@ -20,24 +20,24 @@ void setup() {
   pinMode(floatSwitch, INPUT_PULLUP);
   pinMode(led, OUTPUT);
   Serial.begin(9600);
-
+  
   //dht sensor
   dht.begin();
   Serial.println("The strings will be outputted as: T,h,Float switch, pH");
 }
 
 void loop() {
+  char serIn;
   delay(2000);
-  //float switch
-  int floatVal = digitalRead(floatSwitch);
-  if (floatVal == 1) {
-    digitalWrite(led, HIGH);
-    //Serial.println("Switch is Open!");
-  }
-  else {
-    digitalWrite(led, LOW);
-    //Serial.println("Switch is Closed!");
-  }
+  //data from pi
+  while(Serial.available()>0){
+    serIn=Serial.read();
+    if (serIn=='A') { 
+      digitalWrite(led, HIGH);
+    }
+    else if(serIn=='B'){
+      digitalWrite(led, LOW);
+    }
 
   //temperature sensor code
   // Reading temperature or humidity takes about 250 milliseconds!
@@ -58,34 +58,18 @@ void loop() {
   float hif = dht.computeHeatIndex(f, h);
   // Compute heat index in Celsius (isFahreheit = false)
   float hic = dht.computeHeatIndex(t, h, false);
-  //pH meter readings
-  static float pHValue, pHVoltage;
-  pHRead = analogRead(sensorPin);
-  pHVoltage = pHRead * 5.0 / 1024;
-  pHValue = 3.5 * pHVoltage + offset; //for calibration, need to play with 3.5 and offse
 
-  //  Serial.print("Humidity: ");
-  //  Serial.print(h);
-  //  Serial.print(" %\t");
-  //  Serial.print("Temperature: ");
-  //  Serial.print(t);
-  //  Serial.print(" *C ");
-  //  Serial.print(f);
-  //  Serial.print(" *F\t");
-  //  Serial.print("Heat index: ");
-  //  Serial.print(hic);
-  //  Serial.print(" *C ");
-  //  Serial.print(hif);
-  //  Serial.println(" *F");
-  //  Serial.println(h);
-  //  Serial.println("%\n");
-  Serial.print(t);
-  Serial.print(", ");
-  Serial.print(h);
-  Serial.print(", ");
-  Serial.print(floatVal);
-  Serial.print(", ");
-  Serial.println(pHValue);
-
+  //float switch
+  int floatVal = digitalRead(floatSwitch); 
+  if (floatVal == 1){
+    //digitalWrite(led, HIGH);
+    Serial.println(floatVal);
+  }
+  else{
+    //digitalWrite(led, LOW);
+    Serial.println(floatVal);
+  }
+    Serial.println(h);
+    Serial.println(f);
 
 }
