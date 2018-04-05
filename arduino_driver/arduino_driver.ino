@@ -8,22 +8,15 @@
 #define led 13        //LED pin
 
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321 
-DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor.
-
-#define sensorPin A0 //Analog pin, aka pin 14
-#define offset 0.00 //Calibration variable, maybe not useful
-//pH sensor to be plugged into A0 (blue), 5v (red), and ground (black)
-
-int pHRead;
+DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor. 
 
 void setup() {
-  pinMode(floatSwitch, INPUT_PULLUP);
+  pinMode(floatSwitch,INPUT_PULLUP);
   pinMode(led, OUTPUT);
   Serial.begin(9600);
   
   //dht sensor
   dht.begin();
-  Serial.println("The strings will be outputted as: T,h,Float switch, pH");
 }
 
 void loop() {
@@ -38,7 +31,8 @@ void loop() {
     else if(serIn=='B'){
       digitalWrite(led, LOW);
     }
-
+  }
+  
   //temperature sensor code
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -53,7 +47,7 @@ void loop() {
     Serial.println("Failed to read from DHT sensor!");
     return;
   }
-
+  
   // Compute heat index in Fahrenheit (the default)
   float hif = dht.computeHeatIndex(f, h);
   // Compute heat index in Celsius (isFahreheit = false)
@@ -69,7 +63,22 @@ void loop() {
     //digitalWrite(led, LOW);
     Serial.println(floatVal);
   }
+  
+//  Serial.print("Humidity: ");
     Serial.println(h);
+    //Serial.print(" %\n");
+//  Serial.print("Temperature: ");
+//  Serial.print(t);
+//  Serial.print(" *C ");
     Serial.println(f);
+    //Serial.print(" *F\n");
+//  Serial.print("Heat index: ");
+//  Serial.print(hic);
+//  Serial.print(" *C ");
+//  Serial.print(hif);
+//  Serial.println(" *F");
+//  Serial.println(h);
+//  Serial.println("%\n");
+
 
 }
