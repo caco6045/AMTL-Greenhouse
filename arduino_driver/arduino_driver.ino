@@ -28,16 +28,6 @@ void setup() {
 
 void loop() {
   delay(2000);
-  //float switch
-  int floatVal = digitalRead(floatSwitch);
-  if (floatVal == 1) {
-    digitalWrite(led, HIGH);
-    //Serial.println("Switch is Open!");
-  }
-  else {
-    digitalWrite(led, LOW);
-    //Serial.println("Switch is Closed!");
-  }
 
   //temperature sensor code
   // Reading temperature or humidity takes about 250 milliseconds!
