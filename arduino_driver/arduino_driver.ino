@@ -10,6 +10,10 @@
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321 
 DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor. 
 
+#define sensorPin A0
+#define offset 0.00 //Calibration Variable
+int pHRead;
+
 void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
   pinMode(led, OUTPUT);
@@ -55,6 +59,14 @@ void loop() {
 
   //float switch
   int floatVal = digitalRead(floatSwitch); 
+
+  //pH sensor
+  static float pHValue, pHVoltage;
+  pHRead = analogRead(sensorPin);
+  pHVoltage = pHRead*5.0/1024;
+  pHValue = 3.5*pHVoltage + offset;
+  
+  //Printing Statements
   if (floatVal == 1){
     //digitalWrite(led, HIGH);
     Serial.println(floatVal);
@@ -79,6 +91,7 @@ void loop() {
 //  Serial.println(" *F");
 //  Serial.println(h);
 //  Serial.println("%\n");
+    Serial.println(pHValue);
 
 
 }
