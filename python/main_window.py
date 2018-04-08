@@ -3,6 +3,7 @@
 
 from tkinter import *		#Importing everything from the tkinter library
 import datetime				#Importing the datetime library
+import adruino_to_pi
 
 root = Tk()		#Define the main window
 root.minsize(width=480,height=320)	#Set minimum window size
@@ -37,30 +38,29 @@ label_5 = Label(root)				 #Current Time
 label_5.grid(row=0,column=1,sticky=E)#Place the "clock"
 
 def temp_update():
-	temp = datetime.datetime.now().strftime("Time: %H:%M:%S") #Define the current value of temp
+	temp = arduino_to_pi.tempdata_f #Define the current value of temp
 	label_1.configure(text=temp)		#Configure the temp varialble to be taken as the text argument in  temp Label
 	root.after(1000,temp_update)		#Update the temp after 1000ms (1sec)
 
 def humidity_update():
-	hum = datetime.datetime.now().strftime("Time: %H:%M:%S")  #Define the current value of hum
+	hum = arduino_to_pi.humdata_f("Time: %H:%M:%S")  #Define the current value of hum
 	label_2.configure(text=hum)			#Configure the hum varialble to be taken as the text argument in humidity Label
 	root.after(1000,humidity_update)	#Update the temp after 1000ms (1sec)
 	
 def pH_update():
-	pH = datetime.datetime.now().strftime("Time: %H:%M:%S")   #Define the current value of pH
+	pH = arduino_to_pi.phdata_f   #Define the current value of pH
 	label_3.configure(text=pH)			#Configure the pH varialble to be taken as the text argument in pH Label
 	root.after(1000,pH_update)			#Update the temp after 1000ms (1sec)
 	
 def res_update():
-	res = datetime.datetime.now().strftime("Time: %H:%M:%S")  #Define the current value of res
+	res = arduino_to_pi.floatdata_b #Define the current value of res
 	label_4.configure(text=res)			#Configure the res varialble to be taken as the text argument in res Label
 	root.after(1000,res_update)			#Update the res after 1000ms (1sec)
 
 def clock():
     time = datetime.datetime.now().strftime("Time: %H:%M")
     label_5.config(text=time)
-    #lab['text'] = time
-    root.after(1000, clock) 			#Run itself again after 1000 ms
+    root.after(1000, clock) 			#Update the clock after 1000 ms (1sec)
     
 temp_update()							#Run the initial instance of temp_update
 humidity_update()						#Run the initial instance of humidity_update
