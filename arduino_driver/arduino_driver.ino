@@ -16,7 +16,6 @@ int pHRead;
 
 void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
-  pinMode(led, OUTPUT);
   Serial.begin(9600);
   
   //dht sensor
