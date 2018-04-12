@@ -52,18 +52,18 @@ def dataPull():
 	data = []
 	for line in f:
 		data.append(line)
-	temp=data[1]
-	hum=data[2]
+	temp=data[2]
+	hum=data[1]
 	pH=data[3]
 	res=data[0]			
 										#Define the current value of temp
-	label_1.configure(text=temp)		#Configure the temp varialble to be taken as the text argument in  temp Label
+	label_1.configure(text="Temperature: " + temp)		#Configure the temp varialble to be taken as the text argument in  temp Label
 	
-	label_2.configure(text=hum)			#Configure the hum varialble to be taken as the text argument in humidity Label	
+	label_2.configure(text="Humidity: " + hum)			#Configure the hum varialble to be taken as the text argument in humidity Label	
 	
-	label_3.configure(text=pH)			#Configure the pH varialble to be taken as the text argument in pH Label
+	label_3.configure(text="pH Level: " + pH)			#Configure the pH varialble to be taken as the text argument in pH Label
 	
-	label_4.configure(text=res)			#Configure the res varialble to be taken as the text argument in res Label
+	label_4.configure(text="Reservoir Status: " + res)			#Configure the res varialble to be taken as the text argument in res Label
 	root.after(1000,dataPull)		    #Update the res after 1000ms (1sec)
 	f.close
 	
