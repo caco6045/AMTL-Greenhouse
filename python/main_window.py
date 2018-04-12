@@ -4,6 +4,7 @@
 from Tkinter import *		#Importing everything from the tkinter library
 import datetime				#Importing the datetime library
 import serial
+import tkMessageBox
 
 root = Tk()		#Define the main window
 root.minsize(width=480,height=320)	#Set minimum window size
@@ -21,8 +22,15 @@ def plant_value():
 	f_p=open("plant.txt","w")
 	f_p.write(var.get())
 	f_p.close
+
+def confirmation():
+	ans = tkMessageBox.askquestion("Question 1", "Are you sure you want to update the plant value?")
+	if  ans == "yes":
+		plant_value()
+	elif ans == "no":
+		print("no")
 	
-plant_update = Button(root,text="Update",command=plant_value)	#Create a button to update the plant type
+plant_update = Button(root,text="Update",command=confirmation)	#Create a button to update the plant type
 plant_update.grid(row=1,column=0)		#Place the update button in the main window
 
 label_1 = Label(root)				 #Current temperature label	
