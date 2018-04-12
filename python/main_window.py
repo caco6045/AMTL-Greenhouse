@@ -3,19 +3,33 @@
 
 from Tkinter import *		#Importing everything from the tkinter library
 import datetime				#Importing the datetime library
-import serial
-import tkMessageBox
-
+import serial				#Importing pyserial
+import tkMessageBox			#Import the messagebox from tkinter
+from PIL import Image, ImageTk	#Importing the necessary image classes from the Python Imaging Library (PIL)
 root = Tk()							#Define the main window
 root.minsize(width=480,height=320)	#Set minimum window size
 root.maxsize(width=480,height=320)	#Set maximum window size
 
 
 plant_options = ["Patio Tomato","Spinach","Brocolli"]	#Define plant options for greenhouse
-var = StringVar(root)				 #Define variable var as a string in the main window
-var.set(plant_options[0])			 #Set the initial value of var as the first instance in plant_options
+var = StringVar(root)					#Define variable var as a string in the main window
+var.set(plant_options[0])			 	#Set the initial value of var as the first instance in plant_options
 p = OptionMenu(root,var,*plant_options)	#Create the option menu in the main window using plant_options
-p.grid(row=0,column=0)	#Place the option menu in the main window
+p.grid(row=0,column=0)					#Place the option menu in the main window
+
+image_1 = Image.open("AMTL.jpg")		#Open the image file
+image_1 = image_1.resize((235,100),Image.ANTIALIAS) #Resize the image (w,h)
+photo_1 = ImageTk.PhotoImage(image_1)	#Change the image to something tkinter can read
+label_p1 = Label(root, image=photo_1)	#Put the image in a label
+label_p1.image = photo_1
+label_p1.grid(row=6,column=0)			#Place the image in the main window
+
+image_2 = Image.open("dcc-typetreatment-designbuildinvent.jpg") #Open image file
+image_2 = image_2.resize((235,100),Image.ANTIALIAS)	#Resize the image (w,h)
+photo_2 = ImageTk.PhotoImage(image_2)	#Change the image to something tkinter can read
+label_p2 = Label(root, image=photo_2)	#Put the image in a label
+label_p2.image = photo_2
+label_p2.grid(row=6,column=1)			#Place the lable in the main window
 
 def plant_value():					#Pull the current value of the plant
 	f_p=open("plant.txt","w")		#Opening a text file with the ability to write to it
@@ -23,7 +37,7 @@ def plant_value():					#Pull the current value of the plant
 	f_p.close						#Closing the text file
 
 def confirmation():					#Function to confirm with the user that they want to change the plant value
-	ans = tkMessageBox.askquestion("Question 1", "Are you sure you want to update the plant value?") #Creating the message box
+	ans = tkMessageBox.askquestion("Confirm", "Are you sure you want to update the plant value?") #Creating the message box
 	if  ans == "yes":				#Depending on the answer the plant value is either updated or nothing happens
 		plant_value()
 	elif ans == "no":
@@ -62,9 +76,9 @@ def dataPull():
 	else:
 		res_s="Refill"
 										#Define the current value of temp
-	label_1.configure(text="Temperature: "+temp+"F")		#Configure the temp varialble to be taken as the text argument in  temp Label
+	label_1.configure(text="Temperature (F): "+temp)		#Configure the temp varialble to be taken as the text argument in  temp Label
 	
-	label_2.configure(text="Humidity: "+hum+"%")			#Configure the hum varialble to be taken as the text argument in humidity Label	
+	label_2.configure(text="Humidity (%): "+hum)			#Configure the hum varialble to be taken as the text argument in humidity Label	
 	
 	label_3.configure(text="pH Level: " + pH)			#Configure the pH varialble to be taken as the text argument in pH Label
 	
