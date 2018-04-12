@@ -1,5 +1,5 @@
 #AMTL - Indoor Greenhouse
-#Michael Johnson
+#Michael Johnson/Ryan Wood
 
 from Tkinter import *		#Importing everything from the tkinter library
 import datetime				#Importing the datetime library
@@ -17,15 +17,14 @@ var.set(plant_options[0])			 #Set the initial value of var as the first instance
 p = OptionMenu(root,var,*plant_options)	#Create the option menu in the main window using plant_options
 p.grid(row=0,column=0)	#Place the option menu in the main window
 
-def plant_value():
-	#Pull the current value of the plant
-	f_p=open("plant.txt","w")
-	f_p.write(var.get())
-	f_p.close
+def plant_value():					#Pull the current value of the plant
+	f_p=open("plant.txt","w")		#Opening a text file with the ability to write to it
+	f_p.write(var.get())			#Writing the  plant value to the text file
+	f_p.close						#Closing the text file
 
-def confirmation():
-	ans = tkMessageBox.askquestion("Question 1", "Are you sure you want to update the plant value?")
-	if  ans == "yes":
+def confirmation():					#Function to confirm with the user that they want to change the plant value
+	ans = tkMessageBox.askquestion("Question 1", "Are you sure you want to update the plant value?") #Creating the message box
+	if  ans == "yes":				#Depending on the answer the plant value is either updated or nothing happens
 		plant_value()
 	elif ans == "no":
 		print("no")
