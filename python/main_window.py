@@ -55,7 +55,12 @@ def dataPull():
 	temp=data[2]
 	hum=data[1]
 	pH=data[3]
-	res=data[0]			
+	res=data[0]	
+	
+	if res==True:
+		res_s="Full"
+	else:
+		res_s="Refill"
 										#Define the current value of temp
 	label_1.configure(text="Temperature: " + temp)		#Configure the temp varialble to be taken as the text argument in  temp Label
 	
@@ -63,7 +68,7 @@ def dataPull():
 	
 	label_3.configure(text="pH Level: " + pH)			#Configure the pH varialble to be taken as the text argument in pH Label
 	
-	label_4.configure(text="Reservoir Status: " + res)			#Configure the res varialble to be taken as the text argument in res Label
+	label_4.configure(text="Reservoir Status: " + res_s)			#Configure the res varialble to be taken as the text argument in res Label
 	root.after(1000,dataPull)		    #Update the res after 1000ms (1sec)
 	f.close
 	
