@@ -17,7 +17,10 @@ p = OptionMenu(root,var,*plant_options)	#Create the option menu in the main wind
 p.grid(row=0,column=0)	#Place the option menu in the main window
 
 def plant_value():
-	print("Plant is: "+var.get())	 #Pull the current value of the plant
+	#Pull the current value of the plant
+	f_p=open("plant.txt","w")
+	f_p.write(var.get())
+	f_p.close
 	
 plant_update = Button(root,text="Update",command=plant_value)	#Create a button to update the plant type
 plant_update.grid(row=1,column=0)		#Place the update button in the main window
@@ -55,6 +58,7 @@ def dataPull():
 	
 	label_4.configure(text=res)			#Configure the res varialble to be taken as the text argument in res Label
 	root.after(1000,dataPull)		    #Update the res after 1000ms (1sec)
+	f.close
 	
 def clock():
 	time = datetime.datetime.now().strftime("Time: %H:%M:%S")

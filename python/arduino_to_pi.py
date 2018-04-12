@@ -38,6 +38,16 @@ while True:
 	else:
 		ser.write("B")
 	
+	f_p=open("plant.txt","r")
+	plant=f_p.read()
+	
+	if(plant=="Patio Tomato"):
+		
+	elif(plant=="Spinach"):
+		
+	elif(plant=="Brocolli"):
+		
+	
 	print(floatdata_b)
 	print(tempdata_f)
 	print(humdata_f)
