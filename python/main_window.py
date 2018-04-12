@@ -6,7 +6,7 @@ import datetime				#Importing the datetime library
 import serial
 import tkMessageBox
 
-root = Tk()		#Define the main window
+root = Tk()							#Define the main window
 root.minsize(width=480,height=320)	#Set minimum window size
 root.maxsize(width=480,height=320)	#Set maximum window size
 
@@ -33,16 +33,16 @@ plant_update = Button(root,text="Update",command=confirmation)	#Create a button 
 plant_update.grid(row=1,column=0)		#Place the update button in the main window
 
 label_1 = Label(root)				 #Current temperature label	
-label_1.grid(row=2,columnspan=2,sticky=W)#Define placement of label and left allign label
+label_1.grid(row=2,column=0,sticky=W)#Define placement of label and left allign label
 
 label_2 = Label(root)				 #Current humidity label
-label_2.grid(row=3,columnspan=2,sticky=W)#Define placement of the label and right allight the label
+label_2.grid(row=3,column=0,sticky=W)#Define placement of the label and right allight the label
 
 label_3 = Label(root)				 #Current pH label
-label_3.grid(row=4,columnspan=2,sticky=W)#Define placement of label and left allign label
+label_3.grid(row=4,column=0,sticky=W)#Define placement of label and left allign label
 
 label_4 = Label(root)				 #Current res status label
-label_4.grid(row=5,columnspan = 2,sticky=W)#Define placement of the label and right allight the label
+label_4.grid(row=5,column=0,sticky=W)#Define placement of the label and right allight the label
 
 label_5 = Label(root)				 #Current Time
 label_5.grid(row=0,column=1,sticky=E)#Place the "clock"
