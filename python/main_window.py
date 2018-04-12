@@ -33,16 +33,16 @@ plant_update = Button(root,text="Update",command=confirmation)	#Create a button 
 plant_update.grid(row=1,column=0)		#Place the update button in the main window
 
 label_1 = Label(root)				 #Current temperature label	
-label_1.grid(row=2,column=0,sticky=W)#Define placement of label and left allign label
+label_1.grid(row=2,columnspan=2,sticky=W)#Define placement of label and left allign label
 
 label_2 = Label(root)				 #Current humidity label
-label_2.grid(row=2,column=1,sticky=E)#Define placement of the label and right allight the label
+label_2.grid(row=3,columnspan=2,sticky=W)#Define placement of the label and right allight the label
 
 label_3 = Label(root)				 #Current pH label
-label_3.grid(row=3,column=0,sticky=W)#Define placement of label and left allign label
+label_3.grid(row=4,columnspan=2,sticky=W)#Define placement of label and left allign label
 
 label_4 = Label(root)				 #Current res status label
-label_4.grid(row=3,column=1,sticky=E)#Define placement of the label and right allight the label
+label_4.grid(row=5,columnspan = 2,sticky=W)#Define placement of the label and right allight the label
 
 label_5 = Label(root)				 #Current Time
 label_5.grid(row=0,column=1,sticky=E)#Place the "clock"
@@ -57,9 +57,9 @@ def dataPull():
 	pH=data[3]
 	res=data[0]			
 										#Define the current value of temp
-	label_1.configure(text="Temperature: " + temp)		#Configure the temp varialble to be taken as the text argument in  temp Label
+	label_1.configure(text="Temperature: "+temp+"F")		#Configure the temp varialble to be taken as the text argument in  temp Label
 	
-	label_2.configure(text="Humidity: " + hum)			#Configure the hum varialble to be taken as the text argument in humidity Label	
+	label_2.configure(text="Humidity: "+hum+"%")			#Configure the hum varialble to be taken as the text argument in humidity Label	
 	
 	label_3.configure(text="pH Level: " + pH)			#Configure the pH varialble to be taken as the text argument in pH Label
 	
@@ -68,7 +68,7 @@ def dataPull():
 	f.close
 	
 def clock():
-	time = datetime.datetime.now().strftime("Time: %H:%M:%S")
+	time = datetime.datetime.now().strftime("%H:%M:%S")
 	label_5.config(text=time)
 	root.after(1000, clock) 			#Update the clock after 1000 ms (1sec)
 
