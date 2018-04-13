@@ -87,7 +87,7 @@ def dataPull():
 	f.close
 	
 def clock():
-	time = datetime.datetime.now().strftime("%H:%M:%S")
+	time = datetime.datetime.now().strftime("%I:%M:%S:%p")
 	label_5.config(text=time)
 	root.after(1000, clock) 			#Update the clock after 1000 ms (1sec)
 
