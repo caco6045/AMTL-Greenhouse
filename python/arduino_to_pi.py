@@ -6,6 +6,7 @@ import serial
 	
 ser = serial.Serial('COM4',9600)
 print("Connected to: " + ser.portstr)
+prev_plant="none"
 
 while True:
 
@@ -33,20 +34,21 @@ while True:
 	f.write(humdata_s+"\n")
 	f.write(phdata_s+"\n")
 	
-	if(floatdata_b==0):
-		ser.write("A")
-	else:
-		ser.write("B")
-	
 	f_p=open("plant.txt","r")
 	plant=f_p.read()
 	
-	if(plant=="Patio Tomato"):
+	if(prev_plant!=plant):
+		if(plant=="Patio Tomato"):
+			prev_plant="Patio Tomato"
+			ser.write("A")
 		
-	elif(plant=="Spinach"):
-		
-	elif(plant=="Brocolli"):
-		
+		elif(plant=="Spinach"):
+			prev_plant="Spinach"
+			ser.write("B")
+			
+		elif(plant=="Brocolli"):
+			prev_plant="Brocolli"
+			ser.write("C")
 	
 	print(floatdata_b)
 	print(tempdata_f)
