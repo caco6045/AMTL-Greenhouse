@@ -33,7 +33,8 @@ label_p2.grid(row=6,column=1)			#Place the lable in the main window
 
 def plant_value():					#Pull the current value of the plant
 	f_p=open("plant.txt","w")		#Opening a text file with the ability to write to it
-	f_p.write(var.get())			#Writing the  plant value to the text file
+	f_p.write(var.get()+"\n")		#Writing the  plant value to the text file
+	f_p.write("0"+"\n")
 	f_p.close						#Closing the text file
 
 def confirmation():					#Function to confirm with the user that they want to change the plant value
@@ -42,9 +43,18 @@ def confirmation():					#Function to confirm with the user that they want to cha
 		plant_value()
 	elif ans == "no":
 		print("no")
+		
+def pump_on():
+	f_p=open("plant.txt","w")
+	f_p.write(var.get()+"\n")
+	f_p.write("1"+"\n")
+	f_p.close
 	
 plant_update = Button(root,text="Update",command=confirmation)	#Create a button to update the plant type
 plant_update.grid(row=1,column=0)		#Place the update button in the main window
+
+pump_update = Button(root,text="Pump",command=pump_on)	#Create a button to update the plant type
+pump_update.grid(row=0,column=1)		#Place the update button in the main window
 
 label_1 = Label(root)				 #Current temperature label	
 label_1.grid(row=2,column=0,sticky=W)#Define placement of label and left allign label

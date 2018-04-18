@@ -23,6 +23,8 @@ float light_end=0;
 float light_on=0;
 float pump_end=0;
 bool pump_on=0;
+bool pump_switch=0;
+float pump_switch_end=0;
 
 void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
@@ -109,6 +111,9 @@ void loop() {
       light_end=0;
       light_on=0;
     }
+    else if(serIn=='D') {
+      pump_switch=1;
+    }
   }
 
   if(f>temp_max)
@@ -122,35 +127,53 @@ void loop() {
 
   time_run=millis()/1000;
 
-  if(pump_end==0)  
+  if(pump_switch==1)
   {
-    if(floatVal==1)
-      digitalWrite(pump,HIGH);
-    pump_end=time_run+pump_timer;
-    pump_on=1;
-  }
-
-  if(pump_on==1)
-  {
-    if(time_run>=pump_end)
-    {
-      digitalWrite(pump,LOW);
-      pump_on=0;
-      pump_end=time_run+pump_timer;
-    }
-  }
-  else if(pump_on==0)
-  {
-    if(time_run>=pump_end)
+    if(pump_switch_end==0)
     {
       if(floatVal==1)
         digitalWrite(pump,HIGH);
-      pump_on=1;
-      pump_end=time_run+pump_timer;
+      pump_switch_end=time_run+30;
+    }
+
+    if(time_run>=pump_switch_end)
+    {
+      digitalWrite(pump,LOW);
+      pump_switch_end=0;
+      pump_switch=0;
     }
   }
-
-
+  else if(pump_switch==0)
+  {
+    if(pump_end==0)  
+    {
+      if(floatVal==1)
+        digitalWrite(pump,HIGH);
+      pump_end=time_run+pump_timer;
+      pump_on=1;
+    }
+  
+    if(pump_on==1)
+    {
+      if(time_run>=pump_end)
+      {
+        digitalWrite(pump,LOW);
+        pump_on=0;
+        pump_end=time_run+pump_timer;
+      }
+    }
+    else if(pump_on==0)
+    {
+      if(time_run>=pump_end)
+      {
+        if(floatVal==1)
+          digitalWrite(pump,HIGH);
+        pump_on=1;
+        pump_end=time_run+pump_timer;
+      }
+    }
+  }
+  
   if(light_end==0)  
   {
     
