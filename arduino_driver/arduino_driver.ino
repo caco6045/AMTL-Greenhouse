@@ -142,6 +142,9 @@ void loop() {
       pump_switch_end=0;
       pump_switch=0;
     }
+    else
+      if(floatVal==0)
+        digitalWrite(pump,LOW);
   }
   else if(pump_switch==0)
   {
@@ -161,6 +164,9 @@ void loop() {
         pump_on=0;
         pump_end=time_run+pump_timer;
       }
+      else
+        if(floatVal==0)
+          digitalWrite(pump,LOW);
     }
     else if(pump_on==0)
     {

@@ -11,10 +11,10 @@ root = Tk()							#Define the main window
 root.minsize(width=480,height=320)	#Set minimum window size
 root.maxsize(width=480,height=320)	#Set maximum window size
 
-helv36 = tkFont.Font(family='Bell MT', size=17, weight='bold')
-helv12 = tkFont.Font(family='Bell MT', size=12, weight='bold')
-cent12=tkFont.Font(family='Century',size=12,weight='bold')
-cent20=tkFont.Font(family='Century',size=14,weight='bold')
+helv36 = tkFont.Font(family='Helvetica', size=17, weight='bold')
+helv12 = tkFont.Font(family='Helvetica', size=12, weight='bold')
+cent12=tkFont.Font(family='Helvetica',size=12,weight='bold')
+cent20=tkFont.Font(family='Helvetica',size=14,weight='bold')
 
 
 plant_options = ["Patio Tomato","Spinach","Brocolli"]	#Define plant options for greenhouse
@@ -46,7 +46,7 @@ def plant_value():					#Pull the current value of the plant
 	f_p.close						#Closing the text file
 
 def confirmation():					#Function to confirm with the user that they want to change the plant value
-	ans = tkMessageBox.askquestion("Confirm", "Are you sure you want to update the plant value?") #Creating the message box
+	ans = tkMessageBox.askquestion("Confirm", "Are you sure you wish to begin growing a new plant?") #Creating the message box
 	if  ans == "yes":				#Depending on the answer the plant value is either updated or nothing happens
 		plant_value()
 	elif ans == "no":
