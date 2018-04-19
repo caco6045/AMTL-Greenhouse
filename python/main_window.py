@@ -25,14 +25,14 @@ p.grid(row=0,column=0,padx=20,pady=10)					#Place the option menu in the main wi
 p.config(height=1,width=12)
 p['font']=helv36
 
-image_1 = Image.open("AMTL.jpg")		#Open the image file
+image_1 = Image.open("AMTL.png")		#Open the image file
 image_1 = image_1.resize((210,60),Image.ANTIALIAS) #Resize the image (w,h)
 photo_1 = ImageTk.PhotoImage(image_1)	#Change the image to something tkinter can read
 label_p1 = Label(root, image=photo_1)	#Put the image in a label
 label_p1.image = photo_1
 label_p1.grid(row=6,column=0,sticky=S)			#Place the image in the main window
 
-image_2 = Image.open("dcc-typetreatment-designbuildinvent.jpg") #Open image file
+image_2 = Image.open("dcc-typetreatment-designbuildinvent.png") #Open image file
 image_2 = image_2.resize((230,60),Image.ANTIALIAS)	#Resize the image (w,h)
 photo_2 = ImageTk.PhotoImage(image_2)	#Change the image to something tkinter can read
 label_p2 = Label(root, image=photo_2)	#Put the image in a label
@@ -86,7 +86,7 @@ label_4['font']=cent20
 
 label_5 = Label(root)				 #Current Time
 label_5.grid(row=0,column=1,sticky=E,rowspan=2,padx=10)#Place the "clock"
-label_5['font']=cent12
+label_5['font']=cent20
 
 def dataPull():
 	f=open("datafile.txt","r")
