@@ -110,9 +110,9 @@ def dataPull():
 	label_3.configure(text="pH Level: " + pH)			#Configure the pH varialble to be taken as the text argument in pH Label
 	
 	if(res_s=="Refill"):
-		label_4.configure(text="Reservoir Status: " + res_s.rstrip(),fg="red")			#Configure the res varialble to be taken as the text argument in res Label
+		label_4.configure(text="Reservoir Status: Refill",fg="red")			#Configure the res varialble to be taken as the text argument in res Label
 	else:
-		label_4.configure(text="Reservoir Status: " + res_s.rstrip())
+		label_4.configure(text="Reservoir Status: Full",fg="black")
 	
 	root.after(1000,dataPull)		    #Update the res after 1000ms (1sec)
 	f.close

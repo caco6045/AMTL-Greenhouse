@@ -5,13 +5,12 @@
 from time import sleep
 import serial
 	
-#ser = serial.Serial('COM4',9600)
-#print("Connected to: " + ser.portstr)
+ser = serial.Serial('COM4',9600)
+print("Connected to: " + ser.portstr)
 prev_plant="None"
 pump_switch=False
 
 while True:
-	'''
 	floatdata=ser.readline()
 	tempdata=ser.readline()
 	humdata=ser.readline()
@@ -35,7 +34,7 @@ while True:
 	f.write(tempdata_s+"\n")
 	f.write(humdata_s+"\n")
 	f.write(phdata_s+"\n")
-	'''
+
 	f_p=open("plant.txt","r")
 	plant_data = []
 	for line in f_p:
@@ -47,19 +46,20 @@ while True:
 	
 	if(prev_plant!=plant):
 		if(plant=="Patio Tomato"):
+			print plant
 			prev_plant="Patio Tomato"
-			#ser.write("A")
+			ser.write("A")
 		
 		elif(plant=="Spinach"):
 			prev_plant="Spinach"
-			#ser.write("B")
+			ser.write("B")
 			
 		elif(plant=="Brocolli"):
 			prev_plant="Brocolli"
-			#ser.write("C")
+			ser.write("C")
 			
 	if(pump_switch==True):
-		#ser.write("D")
+		ser.write("D")
 		print "Pump On"
 		pump_switch=False
 		f_p=open("plant.txt","w")
@@ -67,12 +67,11 @@ while True:
 		f_p.write("0"+"\n")
 		print "Pump Off"
 		f_p.close()
-	'''
+
 	print(floatdata_b)
 	print(tempdata_f)
 	print(humdata_f)
 	print(phdata_f)
 	print
 	f.close()
-	'''
-	sleep(2)
+	#sleep(2)

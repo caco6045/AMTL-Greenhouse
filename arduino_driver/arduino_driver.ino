@@ -37,7 +37,6 @@ void setup() {
 }
 
 void loop() {
-
   char serIn;
   
   //temperature sensor code
@@ -85,8 +84,8 @@ void loop() {
   while(Serial.available()>0){
     serIn=Serial.read();
     if (serIn=='A') {
-      temp_max=79;
-      pump_timer=2;
+      temp_max=30;
+      pump_timer=10;
       light_timer=2;
       pump_end=0;
       pump_on=0;
