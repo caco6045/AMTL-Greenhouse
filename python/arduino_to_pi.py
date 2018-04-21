@@ -5,7 +5,7 @@
 from time import sleep
 import serial
 	
-ser = serial.Serial('COM4',9600)
+ser = serial.Serial('/dev/ttyUSB0',9600)
 print("Connected to: " + ser.portstr)
 prev_plant="None"
 pump_switch=False
@@ -41,12 +41,10 @@ while True:
 		plant_data.append(line)
 	plant=plant_data[0].rstrip()
 	pump_switch=bool(int(plant_data[1]))
-	print pump_switch
 	f_p.close()
 	
 	if(prev_plant!=plant):
 		if(plant=="Patio Tomato"):
-			print plant
 			prev_plant="Patio Tomato"
 			ser.write("A")
 		
