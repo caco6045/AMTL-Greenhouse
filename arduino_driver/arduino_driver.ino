@@ -94,8 +94,8 @@ void loop() {
     }
     else if (serIn=='B') {
       temp_max=80;
-      pump_timer=10;
-      light_timer=10;
+      pump_timer=5;
+      light_timer=5;
       pump_end=0;
       pump_on=0;
       light_end=0;

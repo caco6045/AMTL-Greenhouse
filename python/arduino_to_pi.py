@@ -41,12 +41,10 @@ while True:
 		plant_data.append(line)
 	plant=plant_data[0].rstrip()
 	pump_switch=bool(int(plant_data[1]))
-	print pump_switch
 	f_p.close()
 	
 	if(prev_plant!=plant):
 		if(plant=="Patio Tomato"):
-			print plant
 			prev_plant="Patio Tomato"
 			ser.write("A")
 		
