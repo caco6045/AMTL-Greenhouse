@@ -5,7 +5,7 @@
 from time import sleep
 import serial
 	
-ser = serial.Serial('COM4',9600)
+ser = serial.Serial('/dev/ttyUSB0',9600)
 print("Connected to: " + ser.portstr)
 prev_plant="None"
 pump_switch=False
