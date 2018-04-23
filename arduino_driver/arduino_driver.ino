@@ -145,39 +145,39 @@ void loop() {
       if(floatVal==0)
         digitalWrite(pump,LOW);
   }
-  else if(pump_switch==0)
-  {
-    if(pump_end==0)  
-    {
-      if(floatVal==1)
-        digitalWrite(pump,HIGH);
-      pump_end=time_run+pump_timer;
-      pump_on=1;
-    }
   
-    if(pump_on==1)
+  if(pump_end==0)  
+  {
+    if(floatVal==1&&pump_switch==0)
+      digitalWrite(pump,HIGH);
+    pump_end=time_run+pump_timer;
+    pump_on=1;
+  }
+
+  if(pump_on==1)
+  {
+    if(time_run>=pump_end)
     {
-      if(time_run>=pump_end)
-      {
+      if(pump_switch==0)
         digitalWrite(pump,LOW);
-        pump_on=0;
-        pump_end=time_run+pump_timer;
-      }
-      else
-        if(floatVal==0)
-          digitalWrite(pump,LOW);
+      pump_on=0;
+      pump_end=time_run+pump_timer;
     }
-    else if(pump_on==0)
+    else
+      if(floatVal==0&&pump_switch==0)
+        digitalWrite(pump,LOW);
+  }
+  else if(pump_on==0)
+  {
+    if(time_run>=pump_end)
     {
-      if(time_run>=pump_end)
-      {
-        if(floatVal==1)
-          digitalWrite(pump,HIGH);
-        pump_on=1;
-        pump_end=time_run+pump_timer;
-      }
+      if(floatVal==1&&pump_switch==0)
+        digitalWrite(pump,HIGH);
+      pump_on=1;
+      pump_end=time_run+pump_timer;
     }
   }
+ 
   
   if(light_end==0)  
   {
