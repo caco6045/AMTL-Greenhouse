@@ -46,7 +46,7 @@ void loop() {
   // Read temperature as Celsius (the default)
   //float t = dht.readTemperature();
   // Read temperature as Fahrenheit (isFahrenheit = true)
-  float f = dht.readTemperature(true);
+  float f = dht.readTemperature(true)-1.5;
 
   // Check if any reads failed and exit early (to try again).
   if (isnan(h) || isnan(f)) {
