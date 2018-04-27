@@ -25,6 +25,7 @@ float pump_end=0;
 bool pump_on=0;
 bool pump_switch=0;
 float pump_switch_end=0;
+int on=1;
 
 void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
@@ -85,26 +86,26 @@ void loop() {
     serIn=Serial.read();
     if (serIn=='A') {
       temp_max=30;
-      pump_timer=10;
-      light_timer=2;
+      pump_timer=600;
+      light_timer=43200;
       pump_end=0;
       pump_on=0;
       light_end=0;
       light_on=0;
     }
     else if (serIn=='B') {
-      temp_max=80;
-      pump_timer=5;
-      light_timer=5;
+      temp_max=30;
+      pump_timer=600;
+      light_timer=43200;
       pump_end=0;
       pump_on=0;
       light_end=0;
       light_on=0;
     }
     else if(serIn=='C') {
-      temp_max=70;
-      pump_timer=20;
-      light_timer=20;
+      temp_max=30;
+      pump_timer=600;
+      light_timer=43200;
       pump_end=0;
       pump_on=0;
       light_end=0;
@@ -114,7 +115,7 @@ void loop() {
       pump_switch=1;
     }
   }
-
+/*
   if(f>temp_max)
   {
     digitalWrite(fan,HIGH);
@@ -123,14 +124,14 @@ void loop() {
   {
     digitalWrite(fan,LOW);
   }
-
+*/
   time_run=millis()/1000;
 
   if(pump_switch==1)
   {
     if(pump_switch_end==0)
     {
-      if(floatVal==1)
+      if(floatVal==on)
         digitalWrite(pump,HIGH);
       pump_switch_end=time_run+30;
     }
@@ -142,13 +143,13 @@ void loop() {
       pump_switch=0;
     }
     else
-      if(floatVal==0)
+      if(floatVal==!on)
         digitalWrite(pump,LOW);
   }
-  
+  /*
   if(pump_end==0)  
   {
-    if(floatVal==1&&pump_switch==0)
+    if(floatVal==on&&pump_switch==0)
       digitalWrite(pump,HIGH);
     pump_end=time_run+pump_timer;
     pump_on=1;
@@ -164,21 +165,21 @@ void loop() {
       pump_end=time_run+pump_timer;
     }
     else
-      if(floatVal==0&&pump_switch==0)
+      if(floatVal==!on&&pump_switch==0)
         digitalWrite(pump,LOW);
   }
   else if(pump_on==0)
   {
     if(time_run>=pump_end)
     {
-      if(floatVal==1&&pump_switch==0)
+      if(floatVal==on&&pump_switch==0)
         digitalWrite(pump,HIGH);
       pump_on=1;
       pump_end=time_run+pump_timer;
     }
   }
  
-  
+
   if(light_end==0)  
   {
     
@@ -205,6 +206,7 @@ void loop() {
       light_end=time_run+light_timer;
     }
   }
+  */
   delay(1000);
 
 
