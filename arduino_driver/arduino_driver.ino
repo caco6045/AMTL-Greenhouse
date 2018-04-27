@@ -7,7 +7,7 @@
 #define floatSwitch 2 //Float input pin
 #define led 13        //LED pin
 #define fan 11 //fan pin
-#define pump 12 //pump pin
+#define pump 4 //pump pin
 
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321 
 DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor. 
@@ -29,7 +29,7 @@ int on=1;
 
 void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
-  pinMode(fan,OUTPUT);
+  //pinMode(fan,OUTPUT);
   pinMode(pump,OUTPUT);
   Serial.begin(9600);
   
@@ -43,18 +43,20 @@ void loop() {
   //temperature sensor code
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
-  float h = dht.readHumidity();
+  //float h = dht.readHumidity();
   // Read temperature as Celsius (the default)
   //float t = dht.readTemperature();
   // Read temperature as Fahrenheit (isFahrenheit = true)
-  float f = dht.readTemperature(true)-1.5;
+  //float f = dht.readTemperature(true)-1.5;
 
   // Check if any reads failed and exit early (to try again).
+  /*
   if (isnan(h) || isnan(f)) {
     float failed=-1;
     Serial.println(failed);
     return;
   }
+  */
   
   // Compute heat index in Fahrenheit (the default)
   //float hif = dht.computeHeatIndex(f, h);
@@ -77,8 +79,8 @@ void loop() {
     Serial.println(floatVal);
   }
 
-    Serial.println(h);
-    Serial.println(f);
+    //Serial.println(h);
+    //Serial.println(f);
     Serial.println(pHValue);
 
     //data from pi
