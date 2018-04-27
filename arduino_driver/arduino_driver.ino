@@ -44,10 +44,12 @@ void loop() {
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   //float h = dht.readHumidity();
+  float h=51.47;
   // Read temperature as Celsius (the default)
   //float t = dht.readTemperature();
   // Read temperature as Fahrenheit (isFahrenheit = true)
   //float f = dht.readTemperature(true)-1.5;
+  float f=80.32;
 
   // Check if any reads failed and exit early (to try again).
   /*
@@ -79,8 +81,8 @@ void loop() {
     Serial.println(floatVal);
   }
 
-    //Serial.println(h);
-    //Serial.println(f);
+    Serial.println(h);
+    Serial.println(f);
     Serial.println(pHValue);
 
     //data from pi
