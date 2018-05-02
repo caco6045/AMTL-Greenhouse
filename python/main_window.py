@@ -11,12 +11,7 @@ import Tkinter as tk
 
 root = Tk()							#Define the main window
 
-
 root.attributes("-fullscreen", True)
-
-
-
-
 
 helv36 = tkFont.Font(family='Helvetica', size=15, weight='bold')
 helv12 = tkFont.Font(family='Helvetica', size=12, weight='bold')
@@ -44,6 +39,11 @@ photo_2 = ImageTk.PhotoImage(image_2)	#Change the image to something tkinter can
 label_p2 = Label(root, image=photo_2)	#Put the image in a label
 label_p2.image = photo_2
 label_p2.grid(row=6,column=1,sticky=S)			#Place the lable in the main window
+
+def close(event):
+	sys.exit() 
+	
+root.bind('<Escape>',close)
 
 def plant_value():					#Pull the current value of the plant
 	f_p=open("plant.txt","w")		#Opening a text file with the ability to write to it
@@ -105,9 +105,9 @@ def dataPull():
 	res=data[0]	
 	
 	if res.rstrip()=="True":
-		res_s="Full"
-	else:
 		res_s="Refill"
+	else:
+		res_s="Full"
 										#Define the current value of temp
 	label_1.configure(text="Temperature: "+temp.rstrip() +" F")		#Configure the temp varialble to be taken as the text argument in  temp Label
 	
