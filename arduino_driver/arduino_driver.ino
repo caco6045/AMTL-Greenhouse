@@ -13,7 +13,7 @@
 DHT dht(DHTPIN, DHTTYPE); // Initialize DHT sensor. 
 
 #define sensorPin A0
-#define offset 0.00 //Calibration Variable
+#define offset -2.00 //Calibration Variable
 int pHRead;
 float temp_max=200;
 int pump_timer;
@@ -25,7 +25,7 @@ float pump_end=0;
 bool pump_on=0;
 bool pump_switch=0;
 float pump_switch_end=0;
-int on=1;
+int on=0;
 
 void setup() {
   pinMode(floatSwitch,INPUT_PULLUP);
@@ -44,21 +44,21 @@ void loop() {
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   //float h = dht.readHumidity();
-  float h=51.47;
+  float h=20;
   // Read temperature as Celsius (the default)
   //float t = dht.readTemperature();
   // Read temperature as Fahrenheit (isFahrenheit = true)
   //float f = dht.readTemperature(true)-1.5;
-  float f=80.32;
+  float f=70;
 
   // Check if any reads failed and exit early (to try again).
-  /*
+
   if (isnan(h) || isnan(f)) {
     float failed=-1;
     Serial.println(failed);
     return;
   }
-  */
+  
   
   // Compute heat index in Fahrenheit (the default)
   //float hif = dht.computeHeatIndex(f, h);
@@ -119,7 +119,7 @@ void loop() {
       pump_switch=1;
     }
   }
-/*
+
   if(f>temp_max)
   {
     digitalWrite(fan,HIGH);
@@ -128,7 +128,7 @@ void loop() {
   {
     digitalWrite(fan,LOW);
   }
-*/
+
   time_run=millis()/1000;
 
   if(pump_switch==1)
@@ -150,7 +150,7 @@ void loop() {
       if(floatVal==!on)
         digitalWrite(pump,LOW);
   }
-  /*
+  
   if(pump_end==0)  
   {
     if(floatVal==on&&pump_switch==0)
@@ -210,7 +210,7 @@ void loop() {
       light_end=time_run+light_timer;
     }
   }
-  */
+  
   delay(1000);
 
 
