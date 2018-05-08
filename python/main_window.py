@@ -11,10 +11,10 @@ import Tkinter as tk
 
 root = Tk()							#Define the main window
 
-root.attributes("-fullscreen", True)
+root.attributes("-fullscreen", True) #make it fullscreen
 
 helv36 = tkFont.Font(family='Helvetica', size=15, weight='bold')
-helv12 = tkFont.Font(family='Helvetica', size=12, weight='bold')
+helv12 = tkFont.Font(family='Helvetica', size=12, weight='bold') #define fonts
 cent20=tkFont.Font(family='Helvetica',size=14,weight='bold')
 
 
@@ -23,8 +23,8 @@ var = StringVar(root)					#Define variable var as a string in the main window
 var.set(plant_options[0])			 	#Set the initial value of var as the first instance in plant_options
 p = OptionMenu(root,var,*plant_options)	#Create the option menu in the main window using plant_options
 p.grid(row=0,column=0,padx=12,pady=5)					#Place the option menu in the main window
-p.config(width=11)
-p['font']=helv36
+p.config(width=11)  #configure button width
+p['font']=helv36 #configure button font
 
 image_1 = Image.open("AMTL.png")		#Open the image file
 image_1 = image_1.resize((220,70),Image.ANTIALIAS) #Resize the image (w,h)
@@ -41,7 +41,7 @@ label_p2.image = photo_2
 label_p2.grid(row=6,column=1,sticky=S)			#Place the lable in the main window
 
 def close(event):
-	sys.exit() 
+	sys.exit()    #bind escape to exit system
 	
 root.bind('<Escape>',close)
 
@@ -59,7 +59,7 @@ def confirmation():					#Function to confirm with the user that they want to cha
 		print("no")
 		
 def pump_on():
-	f_p=open("plant.txt","w")
+	f_p=open("plant.txt","w")  #write pump and plant information to plant.txt
 	f_p.write(var.get()+"\n")
 	f_p.write("1"+"\n")
 	f_p.close
@@ -95,7 +95,7 @@ label_5.grid(row=0,column=1,sticky=E,rowspan=2)#Place the "clock"
 label_5['font']=cent20
 
 def dataPull():
-	f=open("datafile.txt","r")
+	f=open("datafile.txt","r")  #pull sensor data from datafile.txt
 	data = []
 	for line in f:
 		data.append(line)
@@ -104,7 +104,7 @@ def dataPull():
 	pH=data[3]
 	res=data[0]	
 	
-	if res.rstrip()=="True":
+	if res.rstrip()=="True":  #output for float sensor values
 		res_s="Refill"
 	else:
 		res_s="Full"
